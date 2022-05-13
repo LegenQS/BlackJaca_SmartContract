@@ -1,0 +1,35 @@
+.leftBox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgBox {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.imgBox img {
+    width: 100%;
+}
+
+.likeBox {
+    position: absolute;
+    left: 5px;
+    bottom: -60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.likeBox i {
+    font-size: 30px;
+    color: red;
+    cursor: pointer;
+}
+
+.btn {
+    margin-right: 30px;
+}
