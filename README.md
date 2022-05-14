@@ -106,8 +106,8 @@ and the game be played by another player.
 
 
 ## 4. User Interface
-
-
+### Main Page
+![image](https://github.com/LegenQS/BlackJack_SmartContract/blob/main/img/Blackjack_init.png)
 
 
 
