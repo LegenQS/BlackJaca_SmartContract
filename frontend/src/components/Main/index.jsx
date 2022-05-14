@@ -130,16 +130,22 @@ function Main() {
         const cur_balance = await like_contract.player_balance();
         console.log('current balance ' + cur_balance);
         console.log('previous balance ' + pre_balance)
-        if (cur_balance > pre_balance) {
-            text.innerText = 'You Win!!! Your new balance is ' + parseInt(cur_balance) + '. You can now choose to cash out to leave the game or set bet to start a new turn.';
-        }
-        else if (cur_balance < pre_balance){
+
+        // if (pre_balance > 0 && cur_balance == 0){
+        //     text.innerText = 'You Lose!!! Your remain balance is ' + parseInt(cur_balance) + '. You should place deposit before restarting the game';
+        //     return false;
+        // }
+
+        if (cur_balance <= pre_balance) {
             if (cur_balance > 0) {
                 text.innerText = 'You Lose!!! Your remain balance is ' + parseInt(cur_balance) + '. You can now start a new turn';
             }
             else {
                 text.innerText = 'You Lose!!! Your remain balance is ' + parseInt(cur_balance) + '. You should place deposit before restarting the game';
             }
+        }
+        else if (cur_balance > pre_balance){
+            text.innerText = 'You Win!!! Your new balance is ' + parseInt(cur_balance) + '. You can now choose to cash out to leave the game or set bet to start a new turn.';;
         }
         else {
             text.innerText = '';
