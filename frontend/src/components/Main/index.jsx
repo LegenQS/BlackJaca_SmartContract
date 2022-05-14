@@ -122,7 +122,7 @@ function Main() {
         const cur_score = await like_contract.playercardstatus();
         var text = document.getElementById("result");
         if (cur_score > 0) {
-            text.innerText = 'You are still in the game';
+            text.innerText = 'You are still in the game, you can hit or stand.';
             return false;
         }
         
@@ -148,8 +148,18 @@ function Main() {
 
     const payBackCheck = async () =>{
         var inputAddr = document.getElementById('myaddress').value;
+        
+        if (inputAddr.length != 42) {
+            await (await like_contract.player_click_cash_out()).wait();
+            return false;
+        }
 
-        console.log(typeof inputAddr)
+        const click_cashout = await like_contract.get_player_status();
+
+        if (click_cashout == false) {
+            return false;
+        }
+
         console.log('waiting for response')
         const tx = await like_contract.helper_dealer_check(inputAddr);
         await tx.wait();
@@ -284,8 +294,11 @@ function Main() {
                             >
                                 {'Cash Out'}
                             </button>
-                    
-                    <b>{'Cash Out is only valid for the dealer to operate.'} </b>                  
+                <div class='btn-group'> 
+                    {'For Player, simply click "cash out" to request your money back'} <br></br>
+                    <br></br>
+                    {'For Dealer, input paid back address and click "cash out" to pay back'}     
+                    </div>                
             </div>
             <div>
                     {dealeraddr}
