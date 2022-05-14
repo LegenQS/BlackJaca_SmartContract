@@ -20,6 +20,7 @@ contract BlackJack {
     bool public stand_sign = false;
     bool public placeBet_sign = false;
     uint public paybackBalance = 0;
+    bool public player_cashout = false;
     
     event MoneyFlow(
         address _from,
@@ -131,6 +132,13 @@ contract BlackJack {
         // send ethers to dealer's wallet
         dealerWallet.transfer(msg.value);
         emit MoneyFlow(msg.sender, dealerWallet, msg.value/1000000000000000000);
+
+        stand_sign = false;
+        hit_sign = false;
+        placeBet_sign = false;
+        player_cashout = false;
+        paybackBalance = 0;
+        insurance_text = '';
     }
 
     // function placeDeposit(uint _values) external payable {
@@ -142,11 +150,7 @@ contract BlackJack {
     // }
 
     function setBetValue(uint256 _betValue) public {
-        betValue = _betValue;
-        stand_sign = false;
-        hit_sign = false;
-        placeBet_sign = false;
-        insurance_text = '';
+        betValue = _betValue; 
     }
 
     function placeBet() public enoughBalance betNotPlaced returns(uint256, uint256, uint256){
@@ -318,5 +322,11 @@ contract BlackJack {
         return paybackBalance;
     }
 
+    function player_click_cash_out() public {
+        player_cashout = true;
+    }
 
+    function get_player_status() public view returns(bool) {
+        return player_cashout;
+    }
 }
