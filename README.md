@@ -1,6 +1,6 @@
 # Welcome to our DAPP BlackJack SmartContract!
 In this project, we deployed a smart contract to serve
-and play Black Jack, a famous gambling game. The DAPP
+and play BlackJack, a famous gambling game. The DAPP
 achieved a fully automated and honest gambing experience.
 The contract is written in Solidity 0.5.16, developed and and
 tested in Truffle, and showcased using web3.js and React
